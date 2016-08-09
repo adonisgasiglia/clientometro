@@ -1,0 +1,49 @@
+<%= form_for(@plano) do |f| %>
+  <% if @plano.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@plano.errors.count, "error") %> prohibited this plano from being saved:</h2>
+
+      <ul>
+      <% @plano.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nome %><br>
+    <%= f.text_field :nome %>
+  </div>
+  <div class="field">
+    <%= f.label :ativo %><br>
+    <%= f.check_box :ativo %>
+  </div>
+  <div class="field">
+    <%= f.label :preco_atual %><br>
+    <%= f.text_field :preco_atual %>
+  </div>
+  <div class="field">
+    <%= f.label :inclui_telefonia %><br>
+    <%= f.check_box :inclui_telefonia %>
+  </div>
+  <div class="field">
+    <%= f.label :inclui_endereco_fiscal %><br>
+    <%= f.check_box :inclui_endereco_fiscal %>
+  </div>
+  <div class="field">
+    <%= f.label :inclui_endereco_comercial %><br>
+    <%= f.check_box :inclui_endereco_comercial %>
+  </div>
+  <div class="field">
+    <%= f.label :inclui_sala_privativa %><br>
+    <%= f.check_box :inclui_sala_privativa %>
+  </div>
+  <div class="field">
+    <%= f.label :inclui_coworking %><br>
+    <%= f.check_box :inclui_coworking %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

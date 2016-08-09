@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<div class="title-block">
+  <h1 class="title">
+    Clientes
+  </h1>
+  <p class="title-description"> O maior patrimônio da Mères </p>
+</div>
+<section class="section">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-block">
+          <div class="card-title-block">
+            <h3 class="title">
+              Responsive simple
+            </h3> </div>
+            <section class="section">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Empresa</th>
+                    <th>Representante</th>
+                    <th>Tipo de Cliente</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @clientes.each do |cliente| %>
+                    <tr>
+                      <th scope="row"><%= cliente.__id__ %></td>
+                      <td><%= cliente.empresa %></td>
+                      <td><%= cliente.representante %></td>
+                      <td><%= cliente.pessoa_juridica %></td>
+                      <td><%= link_to 'Show', cliente %></td>
+                      <td><%= link_to 'Edit', edit_cliente_path(cliente) %></td>
+                      <td><%= link_to 'Destroy', cliente, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </section>
+          </div>
+       </div>
+    </div>
+  </div>
+</section>
+
+<br>
+
+<%= link_to 'New Cliente', new_cliente_path %>

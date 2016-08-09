@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @plano.nome %>
+</p>
+
+<p>
+  <strong>Ativo:</strong>
+  <%= @plano.ativo %>
+</p>
+
+<p>
+  <strong>Preco atual:</strong>
+  <%= @plano.preco_atual %>
+</p>
+
+<p>
+  <strong>Inclui telefonia:</strong>
+  <%= @plano.inclui_telefonia %>
+</p>
+
+<p>
+  <strong>Inclui endereco fiscal:</strong>
+  <%= @plano.inclui_endereco_fiscal %>
+</p>
+
+<p>
+  <strong>Inclui endereco comercial:</strong>
+  <%= @plano.inclui_endereco_comercial %>
+</p>
+
+<p>
+  <strong>Inclui sala privativa:</strong>
+  <%= @plano.inclui_sala_privativa %>
+</p>
+
+<p>
+  <strong>Inclui coworking:</strong>
+  <%= @plano.inclui_coworking %>
+</p>
+
+<%= link_to 'Edit', edit_plano_path(@plano) %> |
+<%= link_to 'Back', planos_path %>

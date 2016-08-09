@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html class="no-js" lang="pt-br">
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "Clientômetro - Mères Escritórios Corporativos" %> </title>
+
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+
+  <body>
+    <div class="main-wrapper">
+      <div class="app sidebar-fixed" id="app">
+
+        <%= render "layouts/header" %>
+
+        <%= render "layouts/sidebar" %>
+
+        <article class="content">
+          <%= yield %>
+        </article>
+
+        <%= render "layouts/footer" %>
+
+      </div>
+    </div>
+
+
+    <!-- Reference block for JS -->
+    <div class="ref" id="ref">
+      <div class="color-primary"></div>
+      <div class="chart">
+        <div class="color-primary"></div>
+        <div class="color-secondary"></div>
+      </div>
+    </div>
+    <%= javascript_include_tag 'vendor' %>
+    <%= javascript_include_tag 'app' %>
+  </body>
+</html>

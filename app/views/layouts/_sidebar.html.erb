@@ -1,0 +1,30 @@
+<aside class="sidebar">
+  <div class="sidebar-container">
+    <div class="sidebar-header">
+      <div class="brand">
+        <div class="logo"> <span class="l l1"></span> <span class="l l2"></span> <span class="l l3"></span> <span class="l l4"></span> <span class="l l5"></span> </div> Modular Admin </div>
+    </div>
+    <nav class="menu">
+      <ul class="nav metismenu" id="sidebar-menu">
+        <%= nav_link ' Painel Inicial ', root_path, 'home' %>
+        <li class="<%= 'active open' if params[:controller] == 'clientes' %>">
+          <a href=""> <i class="fa fa-users"></i> Clientes <i class="fa arrow"></i> </a>
+          <ul>
+            <%= nav_link ' Adicionar Cliente ', new_cliente_path, 'nil' %>
+            <%= nav_link ' Listar Clientes ', clientes_path, 'nil' %>
+          </ul>
+        </li>
+        <li class="<%= 'active open' if params[:controller] == 'planos' %>">
+          <a href=""> <i class="fa fa-th-large"></i> Planos <i class="fa arrow"></i> </a>
+          <ul>
+            <%= nav_link ' Adicionar Plano ', new_plano_path, 'nil' %>
+            <%= nav_link ' Listar Planos ', planos_path, 'nil' %>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <footer class="sidebar-footer">
+  </footer>
+</aside>
+<div class="sidebar-overlay" id="sidebar-overlay"></div>

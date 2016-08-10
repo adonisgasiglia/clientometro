@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :preco_atual, class: 'required'%><br>
-    <%= f.text_field :preco_atual, data: {autonumeric: {aSign: 'R$ ', aSep:'.', mDec: ','}} %>
+    <%= f.text_field :preco_atual, class: 'autonumeric' %>
   </div>
   <div class="field">
     <%= f.label :inclui_telefonia %><br>
@@ -47,3 +47,9 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+<script>
+  $(document).ready(function (e) {
+    $(".autonumeric").autoNumeric("init", {aSep: '.', aDec: ',', aSign: 'R$', wEmpty: 'sign'});
+  });
+</script>

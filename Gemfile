@@ -13,8 +13,6 @@ gem 'normalize-rails'
 gem 'money-rails'
 gem 'coffee-script-source', '1.8.0'
 
-gem 'autonumeric-rails'
-
 gem "font-awesome-rails"
 
 # Chose which database you wish to use

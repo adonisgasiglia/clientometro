@@ -20,8 +20,9 @@
     <%= f.check_box :ativo %>
   </div>
   <div class="field">
-    <%= f.label :preco_atual, class: 'required'%><br>
-    <%= f.text_field :preco_atual, class: 'autonumeric' %>
+    <%= f.label :preco_atual, 'Preço Atual (R$):', class: 'required'%><br>
+    <%= f.text_field :preco_atual,
+                     data: {autonumeric: {aSep: '.', aDec: ',', aSign: 'R$ ', vMin: '0.00'}} %>
   </div>
   <div class="field">
     <%= f.label :inclui_telefonia %><br>
@@ -47,9 +48,3 @@
     <%= f.submit %>
   </div>
 <% end %>
-
-<script>
-  $(document).ready(function (e) {
-    $(".autonumeric").autoNumeric("init", {aSep: '.', aDec: ',', aSign: 'R$', wEmpty: 'sign'});
-  });
-</script>

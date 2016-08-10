@@ -16,4 +16,12 @@ module ClientesHelper
     end
   end
 
+  def titulo_cliente(cliente)
+    if cliente.pessoa_juridica
+      "#{cliente.empresa} <span class='text-muted'>(#{cliente.representante})</span>".html_safe
+    else
+      cliente.representante
+    end
+  end
+
 end

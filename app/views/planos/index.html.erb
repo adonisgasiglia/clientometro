@@ -27,7 +27,8 @@
             <th>Nome</th>
             <th>Preco Atual</th>
             <th>Serviços Inclusos</th>
-            <th>Ativo</th>
+            <th style="width: 67px;">Ativo</th>
+            <th style="width: 158px; text-align: center;">Ações</th>
           </tr>
           </thead>
           <tbody>
@@ -35,9 +36,15 @@
               <tr>
                 <th scope="row" style="text-align: center"><%= plano.id %></td>
                 <td><%= plano.nome %></td>
-                <td><%= plano.preco_atual_centavos %></td>
-                <td><%= servicos_plano(plano) %></td>
-                <td><%= plano_ativo?(plano) %></td>
+                <td><%= humanized_money_with_symbol plano.preco_atual %></td>
+                <td>
+                  <%= inclui_telefonia?(plano) %>
+                  <%= inclui_endereco_fiscal?(plano) %>
+                  <%= inclui_endereco_comercial?(plano) %>
+                  <%= inclui_sala_privativa?(plano) %>
+                  <%= inclui_coworking?(plano) %>
+                </td>
+                <td style="text-align: center;"><%= plano_ativo(plano) %></td>
                 <td style="text-align: center;">
                   <div class="btn-group btn-group-smallest">
                     <%= link_to 'VER', plano, :class => "btn btn-primary btn-pill-left" %>

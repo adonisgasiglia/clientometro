@@ -1,50 +1,63 @@
 <%= form_for(@plano) do |f| %>
-  <% if @plano.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@plano.errors.count, "error") %> prohibited this plano from being saved:</h2>
+    <% if @plano.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@plano.errors.count, "error") %> prohibited this plano from being saved:</h2>
 
-      <ul>
-      <% @plano.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @plano.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+    <fieldset class="form-group">
+      <%= f.label :nome %><br>
+      <%= f.text_field :nome, :class => 'form-control' %>
+    </fieldset>
+    <fieldset class="form-group">
+      <div>
+        <label>
+          <%= f.check_box :ativo, :checked => true, :class => 'checkbox' %>
+          <span>Ativo?</span>
+        </label>
+      </div>
+    </fieldset>
+    <fieldset class="form-group">
+      <%= f.label :preco_atual%><br>
+      <div class="input-group">
+        <span class="input-group-addon">$</span>
+        <%= f.text_field :preco_atual, :class => 'form-control' %>
+      </div>
+    </fieldset>
+
+    <div class="form-group">
+      <label class="control-label">Serviços Inclusos</label>
+      <div>
+        <label>
+          <%= f.check_box :inclui_endereco_fiscal, :class => 'checkbox' %>
+          <span>Endereço Fiscal</span>
+        </label>
+        <label>
+          <%= f.check_box :inclui_endereco_comercial, :class => 'checkbox' %>
+          <span>Endereço Comercial</span>
+        </label>
+        <label>
+          <%= f.check_box :inclui_telefonia, :class => 'checkbox' %>
+          <span>Atendimento Telefônico</span>
+        </label>
+        <label>
+          <%= f.check_box :inclui_sala_privativa, :class => 'checkbox' %>
+          <span>Horas em Sala Privativa</span>
+        </label>
+        <label>
+          <%= f.check_box :inclui_coworking, :class => 'checkbox' %>
+          <span>Posição de Coworking</span>
+        </label>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :nome %><br>
-    <%= f.text_field :nome %>
-  </div>
-  <div class="field">
-    <%= f.label :ativo %><br>
-    <%= f.check_box :ativo %>
-  </div>
-  <div class="field">
-    <%= f.label :preco_atual, 'Preço Atual (R$):', class: 'required'%><br>
-    <%= f.text_field :preco_atual,
-                     data: {autonumeric: {aSep: '.', aDec: ',', aSign: 'R$ ', vMin: '0.00'}} %>
-  </div>
-  <div class="field">
-    <%= f.label :inclui_telefonia %><br>
-    <%= f.check_box :inclui_telefonia %>
-  </div>
-  <div class="field">
-    <%= f.label :inclui_endereco_fiscal %><br>
-    <%= f.check_box :inclui_endereco_fiscal %>
-  </div>
-  <div class="field">
-    <%= f.label :inclui_endereco_comercial %><br>
-    <%= f.check_box :inclui_endereco_comercial %>
-  </div>
-  <div class="field">
-    <%= f.label :inclui_sala_privativa %><br>
-    <%= f.check_box :inclui_sala_privativa %>
-  </div>
-  <div class="field">
-    <%= f.label :inclui_coworking %><br>
-    <%= f.check_box :inclui_coworking %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
 <% end %>

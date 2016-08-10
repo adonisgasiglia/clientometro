@@ -5,7 +5,6 @@ Rails.application.config.assets.version = '1.0'
 
 Rails.application.config.assets.precompile += %w( app.js )
 Rails.application.config.assets.precompile += %w( vendor.js )
-Rails.application.config.assets.precompile += %w( autoNumeric.js )
 
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path

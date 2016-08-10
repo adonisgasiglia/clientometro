@@ -1,19 +1,51 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Empresa:</strong>
-  <%= @cliente.empresa %>
-</p>
+<div class="title-block">
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="title">
+        <%= @cliente.pessoa_juridica ? @cliente.empresa : @cliente.representante %>
+      </h3>
+        <p class="title-description"><%= @cliente.pessoa_juridica ? @cliente.representante : "" %></p>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Representante:</strong>
-  <%= @cliente.representante %>
-</p>
+<section class="section">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-block">
+          <%= if @cliente.pessoa_juridica
+            @code ="<p>
+              <strong>Empresa:</strong>
+              #{@cliente.empresa}
+            </p>".html_safe
+          end %>
+          <p>
+            <strong>Representante:</strong>
+            <%= @cliente.representante %>
+          </p>
 
-<p>
-  <strong>Pessoa juridica:</strong>
-  <%= @cliente.pessoa_juridica %>
-</p>
-
-<%= link_to 'Edit', edit_cliente_path(@cliente) %> |
-<%= link_to 'Back', clientes_path %>
+          <p>
+            <strong>Tipo de Cliente:</strong>
+            <%= tipo_cliente(@cliente) %>
+          </p>
+        </div>
+        <div class="card-footer" style="text-align: center;">
+          <div class="btn-group">
+            <%= link_to clientes_path, :class => "btn btn-primary" do %>
+                <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;VOLTAR
+            <% end %>
+            <%= link_to edit_cliente_path(@cliente), :class => "btn btn-warning" do %>
+                <i class="fa fa-edit"></i>&nbsp;&nbsp;EDITAR
+            <% end %>
+            <%= link_to @cliente, method: :delete, data: { confirm: 'Tem certeza disso?' }, :class => "btn btn-danger" do %>
+                <i class="fa fa-close"></i>&nbsp;&nbsp;APAGAR
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

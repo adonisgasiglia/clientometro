@@ -5,6 +5,7 @@ gem 'rake'
 gem 'puma', '2.11.3'
 gem 'secure_headers', '2.2.2'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'jbuilder'
 gem 'sass-rails'
 gem 'coffee-rails'
@@ -12,6 +13,9 @@ gem 'uglifier'
 gem 'normalize-rails'
 gem 'money-rails'
 gem 'coffee-script-source', '1.8.0'
+gem 'simple_form'
+
+gem 'rails-jquery-autocomplete'
 
 gem "font-awesome-rails"
 

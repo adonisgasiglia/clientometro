@@ -71,4 +71,20 @@ class PlanosController < ApplicationController
     def plano_params
       params.require(:plano).permit(:nome, :ativo, :preco_atual, :inclui_telefonia, :inclui_endereco_fiscal, :inclui_endereco_comercial, :inclui_sala_privativa, :inclui_coworking)
     end
+
+  def autocomplete_planos_ativos
+    busca = " #{params[:q]} ".gsub(" ", "%")
+    planos_decorados =  Plano.where("nome like '%#{busca}%' and ativo = true").order("nome").limit(10)
+
+    lista = []
+    planos_decorados.each do |p|
+      lista.push :id => p.id,:name => p.id_nome + ';' + p.preco_atual + ';' + p.inclui_telefonia + ';' + inclui_endereco_fiscal + ';' + inclui_endereco_comercial + ';' + inclui_sala_privativa + ';' + inclui_coworking
+      puts lista
+    end
+
+    respond_to do |format|
+      format.json { render :json => lista }
+    end
+
+  end
 end

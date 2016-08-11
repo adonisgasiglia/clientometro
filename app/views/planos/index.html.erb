@@ -1,10 +1,13 @@
+<% title "Planos | Clientômetro - Mères Escritórios Corporativos" %>
 <p id="notice"><%= notice %></p>
 
 <div class="title-search-block">
   <div class="title-block">
     <div class="row">
       <div style="float:right; margin-right: 14px;">
-        <%= link_to 'Adicionar Plano', new_plano_path, :class => "btn btn-primary btn-sm rounded-s" %>
+        <%= link_to new_plano_path, :class => "btn btn-primary btn-sm rounded-s" do %>
+            <i class="fa fa-plus-circle"></i>&nbsp;&nbsp;Adicionar Plano
+        <% end %>
       </div>
       <div class="col-md-6">
         <h3 class="title">
@@ -24,10 +27,10 @@
           <thead>
           <tr>
             <th style="width: 80px; text-align: center">#</th>
-            <th>Nome</th>
-            <th>Preco Atual</th>
-            <th>Serviços Inclusos</th>
-            <th style="width: 67px;">Ativo</th>
+            <th style="width: 75px;text-align: center;">Ativo?</th>
+            <th style="text-align: center;">Nome</th>
+            <th style="text-align: center;">Preco Atual</th>
+            <th style="text-align: center;">Serviços Inclusos</th>
             <th style="width: 158px; text-align: center;">Ações</th>
           </tr>
           </thead>
@@ -35,16 +38,16 @@
           <% @planos.each do |plano| %>
               <tr>
                 <th scope="row" style="text-align: center"><%= plano.id %></td>
+                <td style="text-align: center;"><%= plano_ativo?(plano) %></td>
                 <td><%= plano.nome %></td>
-                <td><%= humanized_money_with_symbol plano.preco_atual %></td>
-                <td>
+                <td style="text-align: center;"><%= humanized_money_with_symbol plano.preco_atual %></td>
+                <td style="font-size: 14px;">
                   <%= inclui_telefonia?(plano) %>
                   <%= inclui_endereco_fiscal?(plano) %>
                   <%= inclui_endereco_comercial?(plano) %>
                   <%= inclui_sala_privativa?(plano) %>
                   <%= inclui_coworking?(plano) %>
                 </td>
-                <td style="text-align: center;"><%= plano_ativo(plano) %></td>
                 <td style="text-align: center;">
                   <div class="btn-group btn-group-smallest">
                     <%= link_to 'VER', plano, :class => "btn btn-primary btn-pill-left" %>

@@ -1,41 +1,95 @@
-<%= form_for(@contrato) do |f| %>
-  <% if @contrato.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@contrato.errors.count, "error") %> prohibited this contrato from being saved:</h2>
+<%= simple_form_for(@contrato) do |f| %>
+    <% if @contrato.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@contrato.errors.count, "error") %> prohibited this contrato from being saved:</h2>
 
-      <ul>
-      <% @contrato.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @contrato.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :cliente_id %><br>
+      <%= f.number_field :cliente_id %>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :cliente_id %><br>
-    <%= f.number_field :cliente_id %>
-  </div>
-  <div class="field">
-    <%= f.label :plano_id %><br>
-    <%= f.number_field :plano_id %>
-  </div>
-  <div class="field">
-    <%= f.label :preco_atual %><br>
-    <%= f.text_field :preco_atual %>
-  </div>
-  <div class="field">
-    <%= f.label :data_inicio %><br>
-    <%= f.date_select :data_inicio %>
-  </div>
-  <div class="field">
-    <%= f.label :data_final %><br>
-    <%= f.date_select :data_final %>
-  </div>
-  <div class="field">
-    <%= f.label :periodicidade_meses %><br>
-    <%= f.number_field :periodicidade_meses %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="field">
+      <%= f.hidden_field :plano_id %>
+      <%= f.label :plano_id, "Plano" %><br>
+      <%= text_field_tag :q , "", :id => :busca_plano %>
+    </div>
+
+    <fieldset class="form-group">
+      <%= f.label :preco_atual, "Preço Atual" %><br>
+      <div class="input-group">
+        <span class="input-group-addon">$</span>
+        <%= f.text_field :preco_atual, :class => 'form-control' %>
+      </div>
+    </fieldset>
+    <fieldset class="form-group">
+      <%= f.label :data_inicio, "Data Inicial" %><br>
+      <%= f.text_field :data_inicio, :class => 'form-control' %>
+    </fieldset>
+    <fieldset class="form-group ">
+        <%= f.label :data_final, "Data Inicial" %><br>
+        <%= f.text_field :data_final, :class => 'form-control' %>
+    </fieldset>
+    <fieldset class="form-group">
+      <%= f.label :periodicidade_meses, "Periodicidade" %><br>
+      <%= f.text_field :periodicidade_meses, :class => 'form-control' %>
+    </fieldset>
+    <div class="actions">
+      <%= f.submit "Salvar Contrato", :class => "btn btn-success rounded-s" %>
+    </div>
 <% end %>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#busca_plano').tokenInput("<%= autocomplete_planos_ativos_planos_path %>", {
+      searchDelay:2000,
+      crossDomain: false,
+      tokenLimit: 1,
+      theme: "facebook",
+      minChars: 3,
+      hintText: "Digite um termo para a pesquisa do plano",
+      noResultsText: "Nenhum resultado",
+      searchingText: "Pesquisando...",
+      onAdd: function(item){
+        $("#contrato_plano_id").val(item ? item.id : "");
+      },
+      onDelete: function(item){
+        $("#contrato_plano_id").val("");
+        imagem = true;
+      },
+      resultsFormatter: function(item) {
+        var texto = item.name;
+        var texto_quebrado = texto.split(';');
+
+        var nome = texto_quebrado[0];
+        var preco = texto_quebrado[1];
+        var telefonia = texto_quebrado[2];
+        var endereco_fiscal = texto_quebrado[3];
+        var endereco_comercial = texto_quebrado[3];
+        var sala_privativa = texto_quebrado[3];
+        var coworking = texto_quebrado[3];
+
+        return '<li><div class="profile">' +
+            '<div class="profile_box">' +
+            '<div class="name" id="nome"> Nome: '+nome+'</div>' +
+            '<div class="name" id="cpf"> IDUFF: '+iduff+'</div>' +
+            '<div class="name" id="siape"> SIAPE/Matrícula: '+matricula+'</div>' +
+            situacao +
+            '</div></div></li>';
+      },
+      tokenFormatter: function(item) {
+        var texto = item.name;
+        var texto_quebrado = texto.split(';');
+        var nome = texto_quebrado[0];
+        return "<li><p>" + nome +"</p></li>"
+      }
+    });
+  });
+</script>

@@ -1,6 +1,6 @@
 module PlanosHelper
 
-  def plano_ativo(plano)
+  def plano_ativo?(plano)
     if plano.ativo
       content_tag :span, :class => "label label-success" do
         concat fa_icon 'check'

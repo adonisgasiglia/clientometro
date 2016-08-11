@@ -21,6 +21,13 @@
             <%= nav_link ' Listar Planos ', planos_path, 'nil' %>
           </ul>
         </li>
+        <li class="<%= 'active open' if params[:controller] == 'contratos' %>">
+          <a href=""> <i class="fa fa-file-text-o"></i> Contratos <i class="fa arrow"></i> </a>
+          <ul>
+            <%= nav_link ' Adicionar Contrato ', new_contrato_path, 'nil' %>
+            <%= nav_link ' Listar Contratos ', contratos_path, 'nil' %>
+          </ul>
+        </li>
       </ul>
     </nav>
   </div>

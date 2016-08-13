@@ -5,7 +5,11 @@ Rails.application.routes.draw do
       get :autocomplete_planos_ativos
     end
   end
-  resources :clientes
+  resources :clientes do
+    collection do
+      get :estatisticas
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

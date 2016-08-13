@@ -7,6 +7,21 @@ class PlanosController < ApplicationController
     @planos = Plano.all
   end
 
+  def autocomplete_planos_ativos
+    busca = " #{params[:q]} ".gsub(" ", "%")
+    planos_decorados =  Plano.where("nome like '%#{busca}%' and ativo = true").order("nome").limit(10)
+
+    lista = []
+    planos_decorados.each do |p|
+      lista.push :id => p.id,:name => p.nome + ";#{p.preco_atual_centavos};#{p.inclui_telefonia};#{p.inclui_endereco_fiscal};#{p.inclui_endereco_comercial};#{p.inclui_sala_privativa};#{p.inclui_coworking}"
+      puts lista
+    end
+
+    respond_to do |format|
+      format.json { render :json => lista }
+    end
+  end
+
   # GET /planos/1
   # GET /planos/1.json
   def show
@@ -71,20 +86,4 @@ class PlanosController < ApplicationController
     def plano_params
       params.require(:plano).permit(:nome, :ativo, :preco_atual, :inclui_telefonia, :inclui_endereco_fiscal, :inclui_endereco_comercial, :inclui_sala_privativa, :inclui_coworking)
     end
-
-  def autocomplete_planos_ativos
-    busca = " #{params[:q]} ".gsub(" ", "%")
-    planos_decorados =  Plano.where("nome like '%#{busca}%' and ativo = true").order("nome").limit(10)
-
-    lista = []
-    planos_decorados.each do |p|
-      lista.push :id => p.id,:name => p.id_nome + ';' + p.preco_atual + ';' + p.inclui_telefonia + ';' + inclui_endereco_fiscal + ';' + inclui_endereco_comercial + ';' + inclui_sala_privativa + ';' + inclui_coworking
-      puts lista
-    end
-
-    respond_to do |format|
-      format.json { render :json => lista }
-    end
-
-  end
 end

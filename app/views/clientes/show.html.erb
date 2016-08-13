@@ -1,60 +1,12 @@
-<p id="notice"><%= notice %></p>
+<article class="content">
+  <p id="notice"><%= notice %></p>
 
-<% title "#{empresa_ou_representante(@cliente)} | Clientômetro - Mères Escritórios Corporativos" %>
+  <% title "#{empresa_ou_representante(@cliente)} | Clientômetro - Mères Escritórios Corporativos" %>
 
-<div class="title-search-block">
-  <div class="title-block">
-    <div class="row">
-      <div style="float:right; margin-right: 14px;">
-        <div class="btn-group btn-group-sm">
-          <%= link_to clientes_path, :class => "btn btn-primary" do %>
-              <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;VOLTAR
-          <% end %>
-          <%= link_to edit_cliente_path(@cliente), :class => "btn btn-warning" do %>
-              <i class="fa fa-edit"></i>&nbsp;&nbsp;EDITAR
-          <% end %>
-          <%= link_to @cliente, method: :delete, data: { confirm: 'Tem certeza disso?' }, :class => "btn btn-danger" do %>
-              <i class="fa fa-close"></i>&nbsp;&nbsp;APAGAR
-          <% end %>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <h3 class="title">
-          <%= @cliente.pessoa_juridica ? @cliente.empresa : @cliente.representante %>
-        </h3>
-        <p class="title-description"><%= @cliente.pessoa_juridica ? @cliente.representante : "" %></p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<section class="section">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-block">
-          <%= if @cliente.pessoa_juridica
-            @code ="<p>
-              <strong>Empresa:</strong>
-              #{@cliente.empresa}
-            </p>".html_safe
-          end %>
-          <p>
-            <strong>Representante:</strong>
-            <%= @cliente.representante %>
-          </p>
-
-          <p>
-            <strong>Tipo de Cliente:</strong>
-            <%= tipo_cliente(@cliente) %>
-          </p>
-
-          <p>
-            <strong>Ativo?</strong>
-            <%= cliente_ativo?(@cliente) %>
-          </p>
-        </div>
-        <div class="card-footer" style="text-align: center;">
+  <div class="title-search-block">
+    <div class="title-block">
+      <div class="row">
+        <div style="float:right; margin-right: 14px;">
           <div class="btn-group btn-group-sm">
             <%= link_to clientes_path, :class => "btn btn-primary" do %>
                 <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;VOLTAR
@@ -67,7 +19,57 @@
             <% end %>
           </div>
         </div>
+        <div class="col-md-6">
+          <h3 class="title">
+            <%= @cliente.pessoa_juridica ? @cliente.empresa : @cliente.representante %>
+          </h3>
+          <p class="title-description"><%= @cliente.pessoa_juridica ? @cliente.representante : "" %></p>
+        </div>
       </div>
     </div>
   </div>
-</section>
+
+  <section class="section">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-block">
+            <%= if @cliente.pessoa_juridica
+                  @code ="<p>
+              <strong>Empresa:</strong>
+              #{@cliente.empresa}
+            </p>".html_safe
+                end %>
+            <p>
+              <strong>Representante:</strong>
+              <%= @cliente.representante %>
+            </p>
+
+            <p>
+              <strong>Tipo de Cliente:</strong>
+              <%= tipo_cliente(@cliente) %>
+            </p>
+
+            <p>
+              <strong>Ativo?</strong>
+              <%= cliente_ativo?(@cliente) %>
+            </p>
+          </div>
+          <div class="card-footer" style="text-align: center;">
+            <div class="btn-group btn-group-sm">
+              <%= link_to clientes_path, :class => "btn btn-primary" do %>
+                  <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;VOLTAR
+              <% end %>
+              <%= link_to edit_cliente_path(@cliente), :class => "btn btn-warning" do %>
+                  <i class="fa fa-edit"></i>&nbsp;&nbsp;EDITAR
+              <% end %>
+              <%= link_to @cliente, method: :delete, data: { confirm: 'Tem certeza disso?' }, :class => "btn btn-danger" do %>
+                  <i class="fa fa-close"></i>&nbsp;&nbsp;APAGAR
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</article>

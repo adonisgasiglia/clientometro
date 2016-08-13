@@ -34,7 +34,7 @@
       <%= f.text_field :data_inicio, :class => 'form-control' %>
     </fieldset>
     <fieldset class="form-group ">
-        <%= f.label :data_final, "Data Inicial" %><br>
+        <%= f.label :data_final, "Data Final" %><br>
         <%= f.text_field :data_final, :class => 'form-control' %>
     </fieldset>
     <fieldset class="form-group">
@@ -47,7 +47,7 @@
 <% end %>
 
 <script type="text/javascript">
-  $(document).ready(function () {
+  jQuery(document).ready(function ($) {
     $('#busca_plano').tokenInput("<%= autocomplete_planos_ativos_planos_path %>", {
       searchDelay:2000,
       crossDomain: false,
@@ -58,7 +58,14 @@
       noResultsText: "Nenhum resultado",
       searchingText: "Pesquisando...",
       onAdd: function(item){
+        var texto = item.name;
+        var texto_quebrado = texto.split(';');
+        var str = texto_quebrado[1] ? texto_quebrado[1] : "000"
+        var len = str.length;
+        var preco = str.substring(0, len-2) + "," + str.substring(len-2);
+
         $("#contrato_plano_id").val(item ? item.id : "");
+        $("#contrato_preco_atual").val(preco);
       },
       onDelete: function(item){
         $("#contrato_plano_id").val("");
@@ -72,16 +79,13 @@
         var preco = texto_quebrado[1];
         var telefonia = texto_quebrado[2];
         var endereco_fiscal = texto_quebrado[3];
-        var endereco_comercial = texto_quebrado[3];
-        var sala_privativa = texto_quebrado[3];
-        var coworking = texto_quebrado[3];
+        var endereco_comercial = texto_quebrado[4];
+        var sala_privativa = texto_quebrado[5];
+        var coworking = texto_quebrado[6];
 
         return '<li><div class="profile">' +
             '<div class="profile_box">' +
-            '<div class="name" id="nome"> Nome: '+nome+'</div>' +
-            '<div class="name" id="cpf"> IDUFF: '+iduff+'</div>' +
-            '<div class="name" id="siape"> SIAPE/Matrícula: '+matricula+'</div>' +
-            situacao +
+            '<div class="name" id="nome">'+nome+'</div>' +
             '</div></div></li>';
       },
       tokenFormatter: function(item) {

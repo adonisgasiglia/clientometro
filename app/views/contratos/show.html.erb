@@ -53,7 +53,7 @@
 
             <p>
               <strong>Data Início:</strong>
-              <%= l(@contrato.data_inicio) %>
+              <%= @contrato.data_inicio ? l(@contrato.data_inicio) : "não definida" %>
             </p>
 
             <p>

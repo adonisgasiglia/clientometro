@@ -32,7 +32,7 @@
       <%= f.text_field :data_inicio, :class => 'form-control', placeholder: "06/08/2015" %>
     </fieldset>
     <fieldset class="form-group ">
-        <%= f.label :data_final, "Data Final" %><br>
+        <%= f.label :data_final, "Data Final", :style => 'margin-bottom: 0px;' %><br><small class="text-muted">Prazo indeterminado? Deixe em branco!</small><br>
         <%= f.text_field :data_final, :class => 'form-control', placeholder: "06/08/2016" %>
     </fieldset>
     <fieldset class="form-group">
@@ -54,6 +54,9 @@
       hintText: "Digite um termo para a pesquisa do plano",
       noResultsText: "Nenhum resultado",
       searchingText: "Pesquisando...",
+      <%= if !@contrato.new_record?
+      "prePopulate: [{id: #{@contrato.plano_id}, name: \"#{@contrato.plano.nome}\"}],".html_safe
+      end %>
       onAdd: function(item){
         var texto = item.name;
         var texto_quebrado = texto.split(';');
@@ -102,6 +105,10 @@
       hintText: "Digite um termo para a pesquisa do plano",
       noResultsText: "Nenhum resultado",
       searchingText: "Pesquisando...",
+      <%= if !@contrato.new_record?
+      "prePopulate: [{id: #{@contrato.cliente_id}, name: \"#{@contrato.cliente.empresa.blank? ? @contrato.cliente.representante :
+       @contrato.cliente.empresa} - #{@contrato.cliente.representante}\"}],".html_safe
+      end %>
       onAdd: function(item){
         var texto = item.name;
         var texto_quebrado = texto.split(';');

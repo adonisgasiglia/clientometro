@@ -47,7 +47,7 @@
                   <td><%= empresa_ou_representante(contrato.cliente) %></td>
                   <td style="text-align: center;"><%= contrato.plano.nome %></td>
                   <td style="text-align: center;"><%= humanized_money_with_symbol contrato.preco_atual %></td>
-                  <td style="text-align: center;"><%= l(contrato.data_inicio) %></td>
+                  <td style="text-align: center;"><%= contrato.data_inicio ? l(contrato.data_inicio) : "não definida" %></td>
                   <td style="text-align: center;"> <%= contrato.data_final ? l(contrato.data_final) : "em aberto" %></td>
                   <td style="text-align: center;">
                     <div class="btn-group btn-group-smallest">

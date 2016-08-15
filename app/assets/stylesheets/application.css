@@ -13,6 +13,7 @@
  *= require vendor
  *= require app-blue
  *= require font-awesome
+//= require jquery-ui
  *= require_self
  */
 

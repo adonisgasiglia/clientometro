@@ -11,7 +11,6 @@
         </div>
     <% end %>
 
-
     <div class="form-group">
       <label>
         <%= f.check_box :pessoa_juridica, :class => 'checkbox', :checked => true %>
@@ -19,9 +18,9 @@
       </label>
     </div>
 
-    <%= f.input :empresa, label: 'Nome da Empresa', input_html: { class: 'form-control' }, wrapper_html: { class: 'form-group', id: 'bloco-empresa' } %>
+    <%= f.input :empresa, label: 'Nome da Empresa', input_html: { class: 'form-control', placeholder: 'Mères Escritórios Corporativos' }, wrapper_html: { class: 'form-group', id: 'bloco-empresa' } %>
 
-    <%= f.input :representante, label: 'Nome do Representante', input_html: { class: 'form-control' }, wrapper_html: { class: 'form-group' } %>
+    <%= f.input :representante, label: 'Nome do Representante', input_html: { class: 'form-control', placeholder: 'Eduardo Figueiredo de Oliveira Pinto' }, wrapper_html: { class: 'form-group' } %>
 
     <%= f.submit 'Salvar Cliente', :class => "btn btn-success rounded-s", wrapper_html: { class: 'actions' } %>
 

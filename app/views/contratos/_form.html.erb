@@ -29,19 +29,18 @@
     </fieldset>
     <fieldset class="form-group">
       <%= f.label :data_inicio, "Data Inicial" %><br>
-      <%= f.text_field :data_inicio, :class => 'form-control' %>
+      <%= f.text_field :data_inicio, :class => 'form-control', placeholder: "06/08/2015" %>
     </fieldset>
     <fieldset class="form-group ">
         <%= f.label :data_final, "Data Final" %><br>
-        <%= f.text_field :data_final, :class => 'form-control' %>
+        <%= f.text_field :data_final, :class => 'form-control', placeholder: "06/08/2016" %>
     </fieldset>
     <fieldset class="form-group">
       <%= f.label :periodicidade_meses, "Periodicidade (meses)" %><br>
-      <%= f.number_field :periodicidade_meses, :class => 'form-control' %>
+      <%= f.number_field :periodicidade_meses, :class => 'form-control', placeholder: "6" %>
     </fieldset>
-    <div class="actions">
-      <%= f.submit "Salvar Contrato", :class => "btn btn-success rounded-s" %>
-    </div>
+
+    <%= f.submit 'Salvar Contrato', :class => "btn btn-success rounded-s", wrapper_html: { class: 'actions' } %>
 <% end %>
 
 <script type="text/javascript">

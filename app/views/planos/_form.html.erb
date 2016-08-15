@@ -1,4 +1,4 @@
-<%= form_for(@plano) do |f| %>
+<%= simple_form_for(@plano) do |f| %>
     <% if @plano.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@plano.errors.count, "error") %> prohibited this plano from being saved:</h2>
@@ -11,19 +11,15 @@
         </div>
     <% end %>
 
+    <%= f.input :nome, label: 'Nome do Plano', input_html: { class: 'form-control', placeholder: 'Diamond' }, wrapper_html: { class: 'form-group' } %>
 
-    <fieldset class="form-group">
-      <%= f.label :nome, "Nome do Plano" %><br>
-      <%= f.text_field :nome, :class => 'form-control' %>
-    </fieldset>
-    <fieldset class="form-group">
-      <div>
-        <label>
-          <%= f.check_box :ativo, :checked => true, :class => 'checkbox' %>
-          <span>O plano se encontra ativo?</span>
-        </label>
-      </div>
-    </fieldset>
+    <div class="form-group">
+      <label>
+        <%= f.check_box :ativo, :class => 'checkbox', :checked => true %>
+        <span>O plano se encontra ativo?</span>
+      </label>
+    </div>
+
     <fieldset class="form-group">
       <%= f.label :preco_atual, "Preço Atual" %><br>
       <div class="input-group">
@@ -57,7 +53,5 @@
         </label>
       </div>
     </div>
-    <div class="actions">
-      <%= f.submit "Salvar Plano", :class => "btn btn-success rounded-s" %>
-    </div>
+    <%= f.submit 'Salvar Plano', :class => "btn btn-success rounded-s", wrapper_html: { class: 'actions' } %>
 <% end %>

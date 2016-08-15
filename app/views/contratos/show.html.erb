@@ -53,12 +53,12 @@
 
             <p>
               <strong>Data Início:</strong>
-              <%= @contrato.data_inicio %>
+              <%= l(@contrato.data_inicio) %>
             </p>
 
             <p>
               <strong>Data Final:</strong>
-              <%= @contrato.data_final ? @contrato.data_final : "em aberto" %>
+              <%= @contrato.data_final ? l(@contrato.data_final) : "em aberto" %>
             </p>
 
             <p>

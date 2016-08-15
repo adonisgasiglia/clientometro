@@ -2618,7 +2618,8 @@ pre {
 .sidebar-header .brand {
   color: #fff;
   text-align: left;
-  padding-left: 25px;
+  padding-left: 14px;
+  height: 120px;
   line-height: 70px;
   font-size: 16px; }
   @media (max-width: 767px) {

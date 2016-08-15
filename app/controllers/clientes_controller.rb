@@ -61,6 +61,30 @@ class ClientesController < ApplicationController
     end
   end
 
+  def estatisticas
+    @clientes_totais = Cliente.count
+    @clientes_ativos = Cliente.ativos.length
+  end
+
+  def autocomplete_clientes
+    busca = " #{params[:q]} ".gsub(" ", "%")
+    clientes_decorados =  Cliente.where("representante like '%#{busca}%' or empresa like '%#{busca}%'").order("id").limit(10)
+
+    lista = []
+    clientes_decorados.each do |p|
+      if p.empresa.blank?
+        lista.push :id => p.id,:name => p.representante
+      else
+        lista.push :id => p.id,:name => "#{p.empresa} - #{p.representante}"
+        puts lista
+      end
+    end
+
+    respond_to do |format|
+      format.json { render :json => lista }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cliente
@@ -71,19 +95,4 @@ class ClientesController < ApplicationController
     def cliente_params
       params.require(:cliente).permit(:empresa, :representante, :pessoa_juridica)
     end
-
-  def numero_clientes_ativos
-    busca = " #{params[:q]} ".gsub(" ", "%")
-    planos_decorados =  Plano.where("nome like '%#{busca}%' and ativo = true").order("nome").limit(10)
-
-    lista = []
-    planos_decorados.each do |p|
-      lista.push :id => p.id,:name => p.id_nome + ';' + p.preco_atual + ';' + p.inclui_telefonia + ';' + inclui_endereco_fiscal + ';' + inclui_endereco_comercial + ';' + inclui_sala_privativa + ';' + inclui_coworking
-      puts lista
-    end
-
-    respond_to do |format|
-      format.json { render :json => lista }
-    end
-  end
 end

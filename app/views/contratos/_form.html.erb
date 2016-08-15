@@ -2,7 +2,6 @@
     <% if @contrato.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@contrato.errors.count, "error") %> prohibited this contrato from being saved:</h2>
-
           <ul>
             <% @contrato.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
@@ -11,21 +10,20 @@
         </div>
     <% end %>
 
-    <div class="field">
-      <%= f.label :cliente_id %><br>
-      <%= f.number_field :cliente_id %>
-    </div>
-
-    <div class="field">
+    <fieldset class="form-group">
+      <%= f.hidden_field :cliente_id %>
+      <%= f.label :cliente_id, "Cliente" %><br>
+      <%= text_field_tag :q , "", :id => :busca_cliente, :class => 'form-control' %>
+    </fieldset>
+    <fieldset class="form-group">
       <%= f.hidden_field :plano_id %>
       <%= f.label :plano_id, "Plano" %><br>
-      <%= text_field_tag :q , "", :id => :busca_plano %>
-    </div>
-
+      <%= text_field_tag :q , "", :id => :busca_plano, :class => 'form-control' %>
+    </fieldset>
     <fieldset class="form-group">
       <%= f.label :preco_atual, "Preço Atual" %><br>
       <div class="input-group">
-        <span class="input-group-addon">$</span>
+        <span class="input-group-addon">R$</span>
         <%= f.text_field :preco_atual, :class => 'form-control' %>
       </div>
     </fieldset>
@@ -38,8 +36,8 @@
         <%= f.text_field :data_final, :class => 'form-control' %>
     </fieldset>
     <fieldset class="form-group">
-      <%= f.label :periodicidade_meses, "Periodicidade" %><br>
-      <%= f.text_field :periodicidade_meses, :class => 'form-control' %>
+      <%= f.label :periodicidade_meses, "Periodicidade (meses)" %><br>
+      <%= f.number_field :periodicidade_meses, :class => 'form-control' %>
     </fieldset>
     <div class="actions">
       <%= f.submit "Salvar Contrato", :class => "btn btn-success rounded-s" %>
@@ -69,6 +67,7 @@
       },
       onDelete: function(item){
         $("#contrato_plano_id").val("");
+        $("#contrato_preco_atual").val("0,00");
         imagem = true;
       },
       resultsFormatter: function(item) {
@@ -95,5 +94,44 @@
         return "<li><p>" + nome +"</p></li>"
       }
     });
+    $('#busca_cliente').tokenInput("<%= autocomplete_clientes_clientes_path %>", {
+      searchDelay:2000,
+      crossDomain: false,
+      tokenLimit: 1,
+      theme: "facebook",
+      minChars: 3,
+      hintText: "Digite um termo para a pesquisa do plano",
+      noResultsText: "Nenhum resultado",
+      searchingText: "Pesquisando...",
+      onAdd: function(item){
+        var texto = item.name;
+        var texto_quebrado = texto.split(';');
+
+        $("#contrato_cliente_id").val(item ? item.id : "");
+      },
+      onDelete: function(item){
+        $("#contrato_cliente_id").val("");
+        imagem = true;
+      },
+      resultsFormatter: function(item) {
+        var texto = item.name;
+        var texto_quebrado = texto.split(';');
+
+        var nome = texto_quebrado[0];
+
+        return '<li><div class="profile">' +
+            '<div class="profile_box">' +
+            '<div class="name" id="nome">'+nome+'</div>' +
+            '</div></div></li>';
+      },
+      tokenFormatter: function(item) {
+        var texto = item.name;
+        var texto_quebrado = texto.split(';');
+        var nome = texto_quebrado[0];
+        return "<li><p>" + nome +"</p></li>"
+      }
+    });
+    $("#contrato_data_inicio").mask("99/99/9999");
+    $("#contrato_data_final").mask("99/99/9999");
   });
 </script>

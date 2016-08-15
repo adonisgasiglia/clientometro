@@ -43,7 +43,7 @@ class PlanosController < ApplicationController
 
     respond_to do |format|
       if @plano.save
-        format.html { redirect_to @plano, notice: 'Plano was successfully created.' }
+        format.html { redirect_to @plano, notice: 'Plano criado com sucesso.' }
         format.json { render :show, status: :created, location: @plano }
       else
         format.html { render :new }
@@ -57,7 +57,7 @@ class PlanosController < ApplicationController
   def update
     respond_to do |format|
       if @plano.update(plano_params)
-        format.html { redirect_to @plano, notice: 'Plano was successfully updated.' }
+        format.html { redirect_to @plano, notice: 'Plano modificado com sucesso.' }
         format.json { render :show, status: :ok, location: @plano }
       else
         format.html { render :edit }
@@ -71,7 +71,7 @@ class PlanosController < ApplicationController
   def destroy
     @plano.destroy
     respond_to do |format|
-      format.html { redirect_to planos_url, notice: 'Plano was successfully destroyed.' }
+      format.html { redirect_to planos_url, notice: 'Plano removido com sucesso.' }
       format.json { head :no_content }
     end
   end

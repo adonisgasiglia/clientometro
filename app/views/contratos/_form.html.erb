@@ -19,6 +19,9 @@
       <%= f.hidden_field :plano_id %>
       <%= f.label :plano_id, "Plano" %><br>
       <%= text_field_tag :q , "", :id => :busca_plano, :class => 'form-control' %>
+      <div id="lista_serv">
+
+      </div>
     </fieldset>
     <fieldset class="form-group">
       <%= f.label :preco_atual, "Preço Atual" %><br>
@@ -32,8 +35,8 @@
       <%= f.text_field :data_inicio, :class => 'form-control', placeholder: "06/08/2015" %>
     </fieldset>
     <fieldset class="form-group ">
-        <%= f.label :data_final, "Data Final", :style => 'margin-bottom: 0px;' %><br><small class="text-muted">Prazo indeterminado? Deixe em branco!</small><br>
-        <%= f.text_field :data_final, :class => 'form-control', placeholder: "06/08/2016" %>
+      <%= f.label :data_final, "Data Final", :style => 'margin-bottom: 0px;' %><br><small class="text-muted">Prazo indeterminado? Deixe em branco!</small><br>
+      <%= f.text_field :data_final, :class => 'form-control', placeholder: "06/08/2016" %>
     </fieldset>
     <fieldset class="form-group">
       <%= f.label :periodicidade_meses, "Periodicidade (meses)" %><br>
@@ -44,6 +47,42 @@
 <% end %>
 
 <script type="text/javascript">
+
+  function adicionarServicos(telefonia,endereco_fiscal,endereco_comercial,sala_privativa,coworking) {
+
+    if (telefonia == 'true') {
+      var span = document.createElement('span');
+      span.className = 'label label-a';
+      span.innerHTML = '<i class="fa fa-phone"></i> ATENDIMENTO TELEFÔNICO';
+      document.getElementById('lista_serv').appendChild(span);
+    }
+    if (endereco_fiscal == 'true') {
+      var span = document.createElement('span');
+      span.className = 'label label-b';
+      span.innerHTML = '<i class="fa fa-legal"></i> ENDEREÇO FISCAL';
+      document.getElementById('lista_serv').appendChild(span);
+    }
+    if (endereco_comercial == 'true') {
+      var span = document.createElement('span');
+      span.className = 'label label-c';
+      span.innerHTML = '<i class="fa fa-bank"></i> ENDEREÇO COMERCIAL';
+      document.getElementById('lista_serv').appendChild(span);
+    }
+    if (sala_privativa == 'true') {
+      var span = document.createElement('span');
+      span.className = 'label label-d';
+      span.innerHTML = '<i class="fa fa-cube"></i> SALA PRIVATIVA';
+      document.getElementById('lista_serv').appendChild(span);
+    }
+    if (coworking == 'true') {
+      var span = document.createElement('span');
+      span.className = 'label label-e';
+      span.innerHTML = '<i class="fa fa-group"></i> COWORKING';
+      document.getElementById('lista_serv').appendChild(span);
+    }
+
+  }
+
   jQuery(document).ready(function ($) {
     $('#busca_plano').tokenInput("<%= autocomplete_planos_ativos_planos_path %>", {
       searchDelay:2000,
@@ -66,6 +105,15 @@
 
         $("#contrato_plano_id").val(item ? item.id : "");
         $("#contrato_preco_atual").val(preco);
+
+        var telefonia = texto_quebrado[2];
+        var endereco_fiscal = texto_quebrado[3];
+        var endereco_comercial = texto_quebrado[4];
+        var sala_privativa = texto_quebrado[5];
+        var coworking = texto_quebrado[6];
+
+        adicionarServicos(telefonia,endereco_fiscal,endereco_comercial,sala_privativa,coworking);
+
       },
       onDelete: function(item){
         $("#contrato_plano_id").val("");
@@ -77,12 +125,6 @@
         var texto_quebrado = texto.split(';');
 
         var nome = texto_quebrado[0];
-        var preco = texto_quebrado[1];
-        var telefonia = texto_quebrado[2];
-        var endereco_fiscal = texto_quebrado[3];
-        var endereco_comercial = texto_quebrado[4];
-        var sala_privativa = texto_quebrado[5];
-        var coworking = texto_quebrado[6];
 
         return '<li><div class="profile">' +
             '<div class="profile_box">' +

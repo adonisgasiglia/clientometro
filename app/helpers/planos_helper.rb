@@ -14,7 +14,7 @@ module PlanosHelper
 
   def inclui_telefonia?(plano)
     if plano.inclui_telefonia
-      content_tag :span, :class => "label label-e" do
+      content_tag :span, :class => "label label-a" do
         concat fa_icon 'phone'
         concat ' '
         concat 'ATENDIMENTO TELEFÔNICO'
@@ -54,7 +54,7 @@ module PlanosHelper
 
   def inclui_coworking?(plano)
     if plano.inclui_coworking
-      content_tag :span, :class => "label label-a" do
+      content_tag :span, :class => "label label-e" do
         concat fa_icon 'group'
         concat ' '
         concat 'COWORKING'

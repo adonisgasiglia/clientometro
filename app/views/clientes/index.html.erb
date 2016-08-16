@@ -30,36 +30,64 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <table class="table table-striped table-bordered table-hover">
-            <thead>
-            <tr>
-              <th style="width: 80px; text-align: center">#</th>
-              <th style="width: 75px;text-align: center;">Ativo?</th>
-              <th>Identificação do Cliente</th>
-              <th style="width: 145px; text-align: center;">Tipo de Cliente</th>
-              <th style="width: 158px; text-align: center;">Ações</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% @clientes.each do |cliente| %>
-                <tr>
-                  <th scope="row" style="text-align: center"><%= cliente.id %></td>
-                  <td style="text-align: center;"><%= cliente_ativo?(cliente) %></td>
-                  <td><%= titulo_cliente(cliente) %></td>
-                  <td style="text-align: center;"><%= tipo_cliente(cliente) %></td>
-                  <td style="text-align: center;">
-                    <div class="btn-group btn-group-smallest">
-                      <%= link_to 'VER', cliente, :class => "btn btn-primary btn-pill-left" %>
-                      <%= link_to 'EDITAR', edit_cliente_path(cliente), :class => "btn btn-warning" %>
-                      <%= link_to 'APAGAR', cliente, method: :delete, data: { confirm: 'Tem certeza disso?' }, :class => "btn btn-danger btn-pill-right" %>
-                    </div>
-                  </td>
-                </tr>
-            <% end %>
-            </tbody>
-          </table>
+          <div class="card-block">
+            <table class="table table-striped table-bordered table-hover datatable">
+              <thead>
+              <tr>
+                <th style="width: 80px; text-align: center">#</th>
+                <th style="width: 75px;text-align: center;">Ativo?</th>
+                <th>Identificação do Cliente</th>
+                <th style="width: 145px; text-align: center;">Tipo de Cliente</th>
+                <th style="width: 158px; text-align: center;">Ações</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @clientes.each do |cliente| %>
+                  <tr>
+                    <th scope="row" style="text-align: center"><%= cliente.id %></td>
+                    <td style="text-align: center;"><%= cliente_ativo?(cliente) %></td>
+                    <td><%= link_to titulo_cliente(cliente), cliente %></td>
+                    <td style="text-align: center;"><%= tipo_cliente(cliente) %></td>
+                    <td style="text-align: center;">
+                      <div class="btn-group btn-group-smallest">
+                        <%= link_to 'VER', cliente, :class => "btn btn-primary btn-pill-left" %>
+                        <%= link_to 'EDITAR', edit_cliente_path(cliente), :class => "btn btn-warning" %>
+                        <%= link_to 'APAGAR', cliente, method: :delete, data: { confirm: 'Tem certeza disso?' }, :class => "btn btn-danger btn-pill-right" %>
+                      </div>
+                    </td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   </section>
 </article>
+
+<script type="text/javascript" charset="utf-8">
+  $('.datatable').DataTable({
+    "pagingType": "full_numbers",
+    "language": {
+      "decimal":        ",",
+      "emptyTable":     "Nenhum cliente cadastrado",
+      "info":           "Exibindo de _START_ até _END_ (_TOTAL_ no total)",
+      "infoEmpty":      "Nenhum cliente cadastrado",
+      "infoFiltered":   "(filtrado entre _MAX_ clientes totais)",
+      "infoPostFix":    "",
+      "thousands":      ".",
+      "lengthMenu":     "Exibir _MENU_ clientes",
+      "loadingRecords": "Carregando...",
+      "processing":     "Processando...",
+      "search":         "Buscar:",
+      "zeroRecords":    "Nenhum cliente encontrado.",
+      "paginate": {
+        "first":      "Primeira",
+        "last":       "Última",
+        "next":       "Próxima",
+        "previous":   "Anterior"
+      }
+    }
+  });
+</script>

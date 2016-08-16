@@ -5,6 +5,8 @@ class ClientesController < ApplicationController
   # GET /clientes.json
   def index
     @clientes = Cliente.all
+    @clientes_totais = Cliente.count
+    @clientes_ativos = Cliente.ativos.length
   end
 
   # GET /clientes/1
@@ -59,11 +61,6 @@ class ClientesController < ApplicationController
       format.html { redirect_to clientes_url, notice: 'Cliente removido com sucesso.' }
       format.json { head :no_content }
     end
-  end
-
-  def estatisticas
-    @clientes_totais = Cliente.count
-    @clientes_ativos = Cliente.ativos.length
   end
 
   def autocomplete_clientes

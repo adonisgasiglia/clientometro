@@ -27,44 +27,72 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <table class="table table-striped table-bordered table-hover">
-            <thead>
-            <tr>
-              <th style="width: 80px; text-align: center">#</th>
-              <th style="width: 75px;text-align: center;">Ativo?</th>
-              <th style="text-align: center;">Nome</th>
-              <th style="text-align: center;">Preco Atual</th>
-              <th style="text-align: center;">Serviços Inclusos</th>
-              <th style="width: 158px; text-align: center;">Ações</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% @planos.each do |plano| %>
-                <tr>
-                  <th scope="row" style="text-align: center"><%= plano.id %></td>
-                  <td style="text-align: center;"><%= plano_ativo?(plano) %></td>
-                  <td><%= plano.nome %></td>
-                  <td style="text-align: center;"><%= humanized_money_with_symbol plano.preco_atual %></td>
-                  <td style="font-size: 14px;">
-                    <%= inclui_telefonia?(plano) %>
-                    <%= inclui_endereco_fiscal?(plano) %>
-                    <%= inclui_endereco_comercial?(plano) %>
-                    <%= inclui_sala_privativa?(plano) %>
-                    <%= inclui_coworking?(plano) %>
-                  </td>
-                  <td style="text-align: center;">
-                    <div class="btn-group btn-group-smallest">
-                      <%= link_to 'VER', plano, :class => "btn btn-primary btn-pill-left" %>
-                      <%= link_to 'EDITAR', edit_plano_path(plano), :class => "btn btn-warning" %>
-                      <%= link_to 'APAGAR', plano, method: :delete, data: { confirm: 'Tem certeza disso?' }, :class => "btn btn-danger btn-pill-right" %>
-                    </div>
-                  </td>
-                </tr>
-            <% end %>
-            </tbody>
-          </table>
+          <div class="card-block">
+            <table class="table table-striped table-bordered table-hover datatable">
+              <thead>
+              <tr>
+                <th style="width: 80px; text-align: center">#</th>
+                <th style="width: 75px;text-align: center;">Ativo?</th>
+                <th style="text-align: center;">Nome</th>
+                <th style="text-align: center;">Preco Atual</th>
+                <th style="text-align: center;">Serviços Inclusos</th>
+                <th style="width: 158px; text-align: center;">Ações</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @planos.each do |plano| %>
+                  <tr>
+                    <th scope="row" style="text-align: center"><%= plano.id %></td>
+                    <td style="text-align: center;"><%= plano_ativo?(plano) %></td>
+                    <td><%= link_to plano.nome, plano %></td>
+                    <td style="text-align: center;"><%= humanized_money_with_symbol plano.preco_atual %></td>
+                    <td style="font-size: 14px;">
+                      <%= inclui_telefonia?(plano) %>
+                      <%= inclui_endereco_fiscal?(plano) %>
+                      <%= inclui_endereco_comercial?(plano) %>
+                      <%= inclui_sala_privativa?(plano) %>
+                      <%= inclui_coworking?(plano) %>
+                    </td>
+                    <td style="text-align: center;">
+                      <div class="btn-group btn-group-smallest">
+                        <%= link_to 'VER', plano, :class => "btn btn-primary btn-pill-left" %>
+                        <%= link_to 'EDITAR', edit_plano_path(plano), :class => "btn btn-warning" %>
+                        <%= link_to 'APAGAR', plano, method: :delete, data: { confirm: 'Tem certeza disso?' }, :class => "btn btn-danger btn-pill-right" %>
+                      </div>
+                    </td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   </section>
 </article>
+
+<script type="text/javascript" charset="utf-8">
+  $('.datatable').DataTable({
+    "pagingType": "full_numbers",
+    "language": {
+      "decimal":        ",",
+      "emptyTable":     "Nenhum plano cadastrado",
+      "info":           "Exibindo de _START_ até _END_ (_TOTAL_ no total)",
+      "infoEmpty":      "Nenhum plano cadastrado",
+      "infoFiltered":   "(filtrado entre _MAX_ planos totais)",
+      "infoPostFix":    "",
+      "thousands":      ".",
+      "lengthMenu":     "Exibir _MENU_ planos",
+      "loadingRecords": "Carregando...",
+      "processing":     "Processando...",
+      "search":         "Buscar:",
+      "zeroRecords":    "Nenhum plano encontrado.",
+      "paginate": {
+        "first":      "Primeira",
+        "last":       "Última",
+        "next":       "Próxima",
+        "previous":   "Anterior"
+      }
+    }
+  });
+</script>

@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   end
   resources :clientes do
     collection do
-      get :estatisticas
       get :autocomplete_clientes
     end
   end

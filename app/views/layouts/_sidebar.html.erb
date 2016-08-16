@@ -11,7 +11,6 @@
         <li class="<%= 'active open' if params[:controller] == 'clientes' %>">
           <a href=""> <i class="fa fa-users"></i> Clientes <i class="fa arrow"></i> </a>
           <ul>
-            <%= nav_link ' Estatísticas ', estatisticas_clientes_path, 'nil' %>
             <%= nav_link ' Adicionar Cliente ', new_cliente_path, 'nil' %>
             <%= nav_link ' Listar Clientes ', clientes_path, 'nil' %>
           </ul>

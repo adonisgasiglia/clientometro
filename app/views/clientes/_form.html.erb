@@ -21,7 +21,7 @@
     <%= f.input :empresa, label: 'Nome da Empresa', input_html: { class: 'form-control', placeholder: 'Mères Escritórios Corporativos' },
                 wrapper_html: { class: 'form-group', id: 'bloco-empresa' }%>
 
-    <%= f.input :representante, label: 'Nome do Representante',
+    <%= f.input :representante, label: 'Nome do Representante', required: true,
                 input_html: { class: 'form-control', placeholder: 'Eduardo Figueiredo de Oliveira Pinto' }, wrapper_html: { class: 'form-group' } %>
 
     <div style="text-align: center;">
@@ -32,15 +32,15 @@
 
 <script>
   var pj = <%= @cliente.pessoa_juridica %>
-  jQuery(document).ready(function ($) {
-    if( pj ) {
-      $("#bloco-empresa").show('fast');
-    } else {
-      $("#cliente_pessoa_juridica").click();
-      $("#bloco-empresa").hide('fast', function() {
+      jQuery(document).ready(function ($) {
+        if( pj ) {
+          $("#bloco-empresa").show('fast');
+        } else {
+          $("#cliente_pessoa_juridica").click();
+          $("#bloco-empresa").hide('fast', function() {
+          });
+        }
       });
-    }
-  });
 
   $('#cliente_pessoa_juridica').click(function() {
     if( $(this).is(':checked')) {

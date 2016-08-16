@@ -12,27 +12,27 @@
 
     <fieldset class="form-group">
       <%= f.hidden_field :cliente_id %>
-      <%= f.label :cliente_id, "Cliente" %><br>
-      <%= text_field_tag :q , "", :id => :busca_cliente, :class => 'form-control' %>
+      <%= f.label :cliente_id, "<abbr title=\"required\">*</abbr>&nbsp;Cliente".html_safe, :class => 'string required control-label' %><br>
+      <%= text_field_tag :q , "", :required => true, :id => :busca_cliente, :class => 'form-control' %>
     </fieldset>
     <fieldset class="form-group">
       <%= f.hidden_field :plano_id %>
-      <%= f.label :plano_id, "Plano" %><br>
-      <%= text_field_tag :q , "", :id => :busca_plano, :class => 'form-control' %>
+      <%= f.label :plano_id, "<abbr title=\"required\">*</abbr>&nbsp;Plano".html_safe, :class => 'string required control-label' %><br>
+      <%= text_field_tag :q , "",  :required => true, :id => :busca_plano, :class => 'form-control' %>
       <div id="lista_serv">
 
       </div>
     </fieldset>
     <fieldset class="form-group">
-      <%= f.label :preco_atual, "Preço Atual" %><br>
+      <%= f.label :preco_atual, "<abbr title=\"required\">*</abbr>&nbsp;Preço Atual".html_safe, :class => 'string required control-label' %><br>
       <div class="input-group">
         <span class="input-group-addon">R$</span>
-        <%= f.text_field :preco_atual, :class => 'form-control' %>
+        <%= f.text_field :preco_atual, :required => true, :class => 'form-control' %>
       </div>
     </fieldset>
     <fieldset class="form-group">
-      <%= f.label :data_inicio, "Data Inicial" %><br>
-      <%= f.text_field :data_inicio, :class => 'form-control', placeholder: "06/08/2015" %>
+      <%= f.label :data_inicio, "<abbr title=\"required\">*</abbr>&nbsp;Data Inicial".html_safe, :class => 'string required control-label' %><br>
+      <%= f.text_field :data_inicio, :required => true, :class => 'form-control', placeholder: "06/08/2015" %>
     </fieldset>
     <fieldset class="form-group ">
       <%= f.label :data_final, "Data Final", :style => 'margin-bottom: 0px;' %><br><small class="text-muted">Prazo indeterminado? Deixe em branco!</small><br>

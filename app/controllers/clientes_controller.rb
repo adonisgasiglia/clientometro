@@ -65,16 +65,24 @@ class ClientesController < ApplicationController
 
   def autocomplete_clientes
     busca = " #{params[:q]} ".gsub(" ", "%")
-    clientes_decorados =  Cliente.where("representante like '%#{busca}%' or empresa like '%#{busca}%'").order("id").limit(10)
+    clientes_decorados =  Cliente.where("representante like '%#{busca}%' or empresa like '%#{busca}%' or nome_fantasia like '%#{busca}%'").order("id").limit(10)
 
     lista = []
     clientes_decorados.each do |p|
-      if p.empresa.blank?
-        lista.push :id => p.id,:name => p.representante
+      if !p.nome_fantasia.blank?
+        if !p.empresa.blank?
+          lista.push :id => p.id,:name => "#{p.nome_fantasia} (#{p.empresa} - #{p.representante})"
+        else
+          lista.push :id => p.id,:name => "#{p.nome_fantasia} (#{p.representante})"
+        end
       else
-        lista.push :id => p.id,:name => "#{p.empresa} - #{p.representante}"
-        puts lista
+        if !p.empresa.blank?
+          lista.push :id => p.id,:name => "#{p.empresa} (#{p.representante})"
+        else
+          lista.push :id => p.id,:name => "#{p.representante}"
+        end
       end
+      puts lista
     end
 
     respond_to do |format|
@@ -90,6 +98,6 @@ class ClientesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cliente_params
-      params.require(:cliente).permit(:empresa, :representante, :pessoa_juridica)
+      params.require(:cliente).permit(:empresa, :representante, :pessoa_juridica, :nome_fantasia)
     end
 end

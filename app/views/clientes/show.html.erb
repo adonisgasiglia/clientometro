@@ -3,7 +3,7 @@
     <%= flash_messages %>
   </div>
 
-  <% title "#{empresa_ou_representante(@cliente)} | Clientômetro - Mères Escritórios Corporativos" %>
+  <% title "#{titulo_cliente(@cliente)} | Clientômetro - Mères Escritórios Corporativos" %>
 
   <div class="title-search-block">
     <div class="title-block">
@@ -23,9 +23,24 @@
         </div>
         <div class="col-md-6">
           <h3 class="title">
-            <%= @cliente.pessoa_juridica ? @cliente.empresa : @cliente.representante %>
+            <%= if !@cliente.nome_fantasia.blank?
+                  @cliente.nome_fantasia
+                else if @cliente.pessoa_juridica
+                       @cliente.empresa
+                     else
+                       @cliente.representante
+                     end
+                end%>
           </h3>
-          <p class="title-description"><%= @cliente.pessoa_juridica ? @cliente.representante : "" %></p>
+          <p class="title-description">
+            <%= if !@cliente.nome_fantasia.blank?
+                  if @cliente.pessoa_juridica
+                    "#{@cliente.empresa} - #{@cliente.representante}"
+                  else
+                    @cliente.representante
+                  end
+                end
+            %>
         </div>
       </div>
     </div>
@@ -41,6 +56,13 @@
             </div>
           </div>
           <div class="card-block">
+            <%= if !@cliente.nome_fantasia.blank?
+                  @code ="<p>
+              <strong>Nome Fantasia:</strong>
+              #{@cliente.nome_fantasia}
+            </p>".html_safe
+                end %>
+            <p>
             <%= if @cliente.pessoa_juridica
                   @code ="<p>
               <strong>Empresa:</strong>
@@ -86,7 +108,7 @@
           </div>
           <div class="card-block">
             <% if @cliente.contratos.any? %>
-                 <% @cliente.contratos.each do |contrato| %>
+                <% @cliente.contratos.each do |contrato| %>
                     <div class="panel panel-default">
                       <div class="panel-heading">
                         <%= contrato_ativo?(contrato) %>

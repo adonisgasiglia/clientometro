@@ -3,7 +3,7 @@
     <%= flash_messages %>
   </div>
 
-  <% title "#{@contrato.plano.nome} (#{empresa_ou_representante(@contrato.cliente)}) | Clientômetro - Mères Escritórios Corporativos" %>
+  <% title "#{@contrato.plano.nome} (#{titulo_cliente(@contrato.cliente)}) | Clientômetro - Mères Escritórios Corporativos" %>
 
 
   <div class="title-search-block">
@@ -24,7 +24,7 @@
         </div>
         <div class="col-md-6">
           <h3 class="title">
-            <%= "#{@contrato.plano.nome} (#{empresa_ou_representante(@contrato.cliente)})" %>
+            <%= "#{@contrato.plano.nome} (#{titulo_cliente(@contrato.cliente)})" %>
           </h3>
         </div>
       </div>
@@ -126,6 +126,12 @@
             </div>
           </div>
           <div class="card-block">
+            <%= if !@contrato.cliente.nome_fantasia.blank?
+                  @code ="<p>
+              <strong>Nome Fantasia:</strong>
+              #{@contrato.cliente.nome_fantasia}
+            </p>".html_safe
+                end %>
             <%= if @contrato.cliente.pessoa_juridica
                   @code ="<p>
               <strong>Empresa:</strong>

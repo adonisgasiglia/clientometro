@@ -15,6 +15,8 @@ gem 'money-rails'
 gem 'coffee-script-source', '1.8.0'
 gem 'simple_form'
 
+gem 'seed_dump'
+
 gem 'rails-jquery-autocomplete'
 
 gem "font-awesome-rails"

@@ -28,19 +28,31 @@ module ClientesHelper
     end
   end
 
-  def titulo_cliente(cliente)
-    if cliente.pessoa_juridica
-      "#{cliente.empresa} <span class='text-muted'>(#{cliente.representante})</span>".html_safe
+  def titulo_completo_cliente(cliente)
+    if cliente.nome_fantasia.blank?
+      if cliente.pessoa_juridica
+        "#{cliente.empresa} <span class='text-muted'>(#{cliente.representante})</span>".html_safe
+      else
+        cliente.representante
+      end
     else
-      cliente.representante
+      if cliente.pessoa_juridica
+        "#{cliente.nome_fantasia} <span class='text-muted'>(#{cliente.empresa} - #{cliente.representante})</span>".html_safe
+      else
+        "#{cliente.nome_fantasia} - #{cliente.representante}"
+      end
     end
   end
 
-  def empresa_ou_representante(cliente)
-    if cliente.pessoa_juridica
-      cliente.empresa
+  def titulo_cliente(cliente)
+    if cliente.nome_fantasia.blank?
+      if cliente.pessoa_juridica
+        cliente.empresa
+      else
+        cliente.representante
+      end
     else
-      cliente.representante
+      cliente.nome_fantasia
     end
   end
 

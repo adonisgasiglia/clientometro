@@ -38,7 +38,9 @@
                     text-align: center;
                     padding: 10px 0;">Ativo?</th>
                 <th style="text-align: center;">Cliente</th>
-                <th style="text-align: center;">Plano</th>
+                <th style="width: 165px;
+                    text-align: center;
+                    padding: 10px 0;">Plano</th>
                 <th style="width: 130px;
                     text-align: center;
                     padding: 10px 0;">Valor Atual</th>
@@ -58,7 +60,7 @@
                   <tr>
                     <th scope="row" style="text-align: center"><%= contrato.id %></td>
                     <td style="text-align: center;"><%= contrato_ativo?(contrato) %></td>
-                    <td><%= link_to empresa_ou_representante(contrato.cliente), contrato %></td>
+                    <td><%= link_to titulo_completo_cliente(contrato.cliente), contrato %></td>
                     <td style="text-align: center;"><%= link_to contrato.plano.nome, contrato %></td>
                     <td style="text-align: center;"><%= humanized_money_with_symbol contrato.preco_atual %></td>
                     <td style="text-align: center;"><%= contrato.data_inicio ? l(contrato.data_inicio) : "não definida" %></td>

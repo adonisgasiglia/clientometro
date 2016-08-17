@@ -85,45 +85,38 @@
             </div>
           </div>
           <div class="card-block">
-            <% @cliente.contratos.each do |contrato| %>
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <%= contrato_ativo?(contrato) %>
-                    <%= link_to contrato.plano.nome, contrato, {:style => 'margin: 2px 8px; position: absolute;'} %>
-                    <div class="btn-group btn-group-smallest" style="float: right; margin-top: 2px;">
-                      <%= link_to 'VER', contrato, :class => "btn btn-primary btn-pill-left" %>
-                      <%= link_to 'EDITAR', edit_contrato_path(contrato), :class => "btn btn-warning" %>
-                      <%= link_to 'REMOVER', contrato, method: :delete, data: { confirm: 'Tem certeza disso?' }, :class => "btn btn-danger btn-pill-right" %>
-                    </div>
-                  </div>
-                  <div class="panel-body">
-                    <div class="dados-contrato"><strong>MENSALIDADE:</strong> <%= humanized_money_with_symbol contrato.preco_atual %> |
-                    </div>
-                    <div class="dados-contrato"><strong>DATA INICIAL:</strong> <%= contrato.data_inicio ? l(contrato.data_inicio) : "não definida" %> |
-                    </div>
-                    <div class="dados-contrato"><strong>DATA FINAL:</strong> <%= contrato.data_final ? l(contrato.data_final) : "em aberto" %>
-                    </div>
-                    <span style="font-size: 12px;">
+            <% if @cliente.contratos.any? %>
+                 <% @cliente.contratos.each do |contrato| %>
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <%= contrato_ativo?(contrato) %>
+                        <%= link_to contrato.plano.nome, contrato, {:style => 'margin: 2px 8px; position: absolute;'} %>
+                        <div class="btn-group btn-group-smallest" style="float: right; margin-top: 2px;">
+                          <%= link_to 'VER', contrato, :class => "btn btn-primary btn-pill-left" %>
+                          <%= link_to 'EDITAR', edit_contrato_path(contrato), :class => "btn btn-warning" %>
+                          <%= link_to 'REMOVER', contrato, method: :delete, data: { confirm: 'Tem certeza disso?' }, :class => "btn btn-danger btn-pill-right" %>
+                        </div>
+                      </div>
+                      <div class="panel-body">
+                        <div class="dados-contrato"><strong>MENSALIDADE:</strong> <%= humanized_money_with_symbol contrato.preco_atual %> |
+                        </div>
+                        <div class="dados-contrato"><strong>DATA INICIAL:</strong> <%= contrato.data_inicio ? l(contrato.data_inicio) : "não definida" %> |
+                        </div>
+                        <div class="dados-contrato"><strong>DATA FINAL:</strong> <%= contrato.data_final ? l(contrato.data_final) : "em aberto" %>
+                        </div>
+                        <span style="font-size: 12px;">
                       <%= inclui_telefonia?(contrato.plano) %>
-                      <%= inclui_endereco_fiscal?(contrato.plano) %>
-                      <%= inclui_endereco_comercial?(contrato.plano) %>
-                      <%= inclui_sala_privativa?(contrato.plano) %>
-                      <%= inclui_coworking?(contrato.plano) %>
+                          <%= inclui_endereco_fiscal?(contrato.plano) %>
+                          <%= inclui_endereco_comercial?(contrato.plano) %>
+                          <%= inclui_sala_privativa?(contrato.plano) %>
+                          <%= inclui_coworking?(contrato.plano) %>
                     </span>
-                  </div>
-                </div>
+                      </div>
+                    </div>
 
-                <!--<tr>-->
-                <!--<th scope="row" style="text-align: center"><%= contrato.id %></td>-->
-                <!--<td><%= link_to empresa_ou_representante(contrato.cliente), contrato %></td>-->
-                <!--<td style="text-align: center;"></td>-->
-                <!--<td style="text-align: center;"><%= humanized_money_with_symbol contrato.preco_atual %></td>-->
-                <!--<td style="text-align: center;"><%= contrato.data_inicio ? l(contrato.data_inicio) : "não definida" %></td>-->
-                <!--<td style="text-align: center;"> <%= contrato.data_final ? l(contrato.data_final) : "em aberto" %></td>-->
-                <!--<td style="text-align: center;">-->
-
-                <!--</td>-->
-                <!--</tr>-->
+                <% end %>
+            <% else %>
+                <div class="alert alert-info" role="alert">Nenhum contrato encontrado!</div>
             <% end %>
           </div>
         </div>

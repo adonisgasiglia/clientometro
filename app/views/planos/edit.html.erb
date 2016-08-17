@@ -16,6 +16,9 @@
             <%= link_to @plano, :class => "btn btn-info btn-sm rounded-s" do %>
                 <i class="fa fa-eye"></i>&nbsp;&nbsp;Ver Plano
             <% end %>
+            <%= link_to @plano, method: :delete, data: { confirm: 'Tem certeza disso?' }, :class => "btn btn-danger btn-sm rounded-s" do %>
+                <i class="fa fa-close"></i>&nbsp;&nbsp;Remover
+            <% end %>
           </div>
         </div>
         <div class="col-md-6">
@@ -27,10 +30,9 @@
       </div>
     </div>
   </div>
-
   <section class="section">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-6">
         <div class="card">
           <div class="card-block">
             <%= render 'form' %>
@@ -44,8 +46,43 @@
                   <i class="fa fa-eye"></i>&nbsp;&nbsp;VER
               <% end %>
               <%= link_to @plano, method: :delete, data: { confirm: 'Tem certeza disso?' }, :class => "btn btn-danger" do %>
-                  <i class="fa fa-close"></i>&nbsp;&nbsp;APAGAR
+                  <i class="fa fa-close"></i>&nbsp;&nbsp;REMOVER
               <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-block">
+            <div class="title-block">
+              <h4 class="title">
+                Tópicos de Ajuda
+              </h4>
+              <p class="title-description">Precisa de ajuda com o preenchimento do formulário?</p>
+            </div>
+            <div class="ajuda">
+              <h5 class="text-info">
+                Devo escrever <i>Plano Diamond</i> ou apenas <i>Diamond</i>?
+              </h5>
+              <p>
+                Por questão de nomenclatura, é preferencial que você escreva apenas <i>Diamond</i> no campo de nome do
+                plano.
+              </p>
+              <h5 class="text-info">
+                O plano que vou cadastrar ainda não possui nenhum contrato, devo cadastrá-lo como ativo?
+              </h5>
+              <p>
+                Sim. No contexto do clientômetro um plano estar ativo significa que o mesmo está livre para novos
+                contratos, mesmo que ainda não tenha acontecido a primeira venda.
+              </p>
+              <h5 class="text-info">
+                Posso cadastrar um plano que não inclua nenhum dos serviços listados? Como adicionar mais serviços?
+              </h5>
+              <p>
+                Sim. Se for necessário inserir novos serviços à lista, consulte o administrador do sistema antes de
+                realizar o cadastro do novo plano.
+              </p>
             </div>
           </div>
         </div>

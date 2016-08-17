@@ -18,6 +18,14 @@
  *= require_self
  */
 
+.ajuda p {
+    font-size: 0.9rem !important;
+}
+
+.ajuda h5 {
+    font-size: 1.1rem !important;
+}
+
 .btn-group-smallest .btn{
     padding: 0.15rem .30rem;
     font-size: 0.6rem;

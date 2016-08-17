@@ -32,6 +32,64 @@
           </div>
         </div>
       </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-block">
+            <div class="title-block">
+              <h4 class="title">
+                Tópicos de Ajuda
+              </h4>
+              <p class="title-description">Precisa de ajuda com o preenchimento do formulário?</p>
+            </div>
+            <div class="ajuda">
+              <h5 class="text-info">
+                Não consigo encontrar o cliente que estou procurando! Como proceder?
+              </h5>
+              <p>
+                O campo de busca procura tanto pelo nome da empresa (no caso de pessoa jurídica) quanto pelo nome do
+                representante (no caso de pessoa física ou jurídica).
+              </p>
+              <p>
+                Caso você não consiga encontrar o cliente que
+                deseja, verifique <%= link_to "neste link", clientes_path  %> se o mesmo se encontra cadastrado no
+                <span class="text-muted">Clientômetro</span>. Se não encontrá-lo na lista, você pode
+                <%= link_to "adicionar um novo cliente", new_cliente_path %>.
+              </p>
+              <h5 class="text-info">
+                Não consigo encontrar o plano que estou procurando! Como proceder?
+              </h5>
+              <p>
+                Se você estiver procurando por <i>Plano Platinum</i>, por exemplo, experimente buscar apenas por
+                <i>Platinum</i>. Isso provavelmente será o suficiente para você encontrar o plano que procura.
+              </p>
+              <p>Caso a dificuldade persista, verifique <%= link_to "neste link", planos_path  %> se o mesmo se encontra
+                cadastrado no <span class="text-muted">Clientômetro</span>. Se não encontrá-lo na lista, você pode
+                <%= link_to "adicionar um novo plano", new_plano_path %>.
+              </p>
+              <h5 class="text-info">
+                Quando devo deixar o campo <i>Data Final</i> em branco?
+              </h5>
+              <p>
+                O campo <i>Data Final</i> foi criado para delimitar a data em que o contrato foi realmente finalizado.
+                Caso o contrato que está adicionando ainda estiver vigente e sua renovação for automática, não preencha
+                este campo.
+              </p>
+              <h5 class="text-info">
+                O contrato possui possui periodicidade de 12 meses, mas sua renovação é automática. Qual informação devo
+                relatar no campo <i>Periodicidade</i>?
+              </h5>
+              <p>
+                O campo <i>Periodicidade</i> foi criado para calcularmos as renovações de contrato. Logo, é necessário
+                que você informe o valor <i>12</i> neste campo.
+              </p>
+              <p>
+                A única excessão a ser considerada é se o contrato realmente for assinado à prazo indeterminado. Nessa
+                situação é aconselhável deixar o campo <i>Periodicidade</i> em branco.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </article>

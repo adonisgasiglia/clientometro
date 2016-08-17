@@ -33,20 +33,14 @@
 
   <section class="section">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-4">
         <div class="card">
+          <div class="card-header">
+            <div class="header-block">
+              <p class="title">Dados do Contrato</p>
+            </div>
+          </div>
           <div class="card-block">
-
-
-            <p>
-              <strong>Cliente:</strong>
-              <%= empresa_ou_representante(@contrato.cliente) %>
-            </p>
-
-            <p>
-              <strong>Plano:</strong>
-              <%= @contrato.plano.nome %>
-            </p>
 
             <p>
               <strong>Mensalidade Atual:</strong>
@@ -63,22 +57,12 @@
               <%= @contrato.data_final ? l(@contrato.data_final) : "em aberto" %>
             </p>
 
-            <p>
+            <%= if !@contrato.periodicidade_meses.blank?
+                  @code ="<p>
               <strong>Periodicidade (meses):</strong>
-              <%= @contrato.periodicidade_meses %>
-            </p>
-
-
-            <p>
-              <strong>Serviços Inclusos:</strong>
-              <span style="font-size: 14px;">
-              <%= inclui_telefonia?(@contrato.plano) %>
-                <%= inclui_endereco_fiscal?(@contrato.plano) %>
-                <%= inclui_endereco_comercial?(@contrato.plano) %>
-                <%= inclui_sala_privativa?(@contrato.plano) %>
-                <%= inclui_coworking?(@contrato.plano) %>
-            </span>
-            </p>
+              #{@contrato.periodicidade_meses}
+            </p>".html_safe
+                end %>
           </div>
 
           <div class="card-footer" style="text-align: center;">
@@ -93,6 +77,76 @@
                   <i class="fa fa-close"></i>&nbsp;&nbsp;REMOVER
               <% end %>
             </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+            <div class="header-block">
+              <p class="title">Dados do Plano</p>
+            </div>
+          </div>
+          <div class="card-block">
+            <p>
+              <strong>Plano:</strong>
+              <%= @contrato.plano.nome %>
+            </p>
+
+            <p>
+              <strong>Valor Atual:</strong>
+              <%= humanized_money_with_symbol @contrato.plano.preco_atual %>
+            </p>
+
+            <p>
+              <strong>Serviços Inclusos:</strong><br>
+              <span style="font-size: 14px;">
+              <%= inclui_telefonia?(@contrato.plano) %>
+                <%= inclui_endereco_fiscal?(@contrato.plano) %>
+                <%= inclui_endereco_comercial?(@contrato.plano) %>
+                <%= inclui_sala_privativa?(@contrato.plano) %>
+                <%= inclui_coworking?(@contrato.plano) %>
+            </span>
+            </p>
+          </div>
+
+          <div class="card-footer" style="text-align: center;">
+            <%= link_to @contrato.plano, :class => "btn btn-info btn-sm rounded-s" do %>
+                <i class="fa fa-eye"></i>&nbsp;&nbsp;Ver Plano
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+            <div class="header-block">
+              <p class="title">Dados do Cliente</p>
+            </div>
+          </div>
+          <div class="card-block">
+            <%= if @contrato.cliente.pessoa_juridica
+                  @code ="<p>
+              <strong>Empresa:</strong>
+              #{@contrato.cliente.empresa}
+            </p>".html_safe
+                end %>
+            <p>
+              <strong>Representante:</strong>
+              <%= @contrato.cliente.representante %>
+            </p>
+
+            <p>
+              <strong>Tipo de Cliente:</strong>
+              <%= tipo_cliente(@contrato.cliente) %>
+            </p>
+          </div>
+
+          <div class="card-footer" style="text-align: center;">
+            <%= link_to @contrato.cliente, :class => "btn btn-info btn-sm rounded-s" do %>
+                <i class="fa fa-eye"></i>&nbsp;&nbsp;Ver Cliente
+            <% end %>
           </div>
         </div>
       </div>

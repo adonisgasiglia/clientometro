@@ -9,6 +9,8 @@ Rails.application.config.assets.precompile += %w( token-input-facebook.css )
 Rails.application.config.assets.precompile += %w( jquery.tokeninput.js )
 Rails.application.config.assets.precompile += %w( jquery.dataTables.js )
 Rails.application.config.assets.precompile += %w( jquery.dataTables.css )
+Rails.application.config.assets.precompile += %w( bootstrap.js )
+Rails.application.config.assets.precompile += %w( bootstrap.css )
 
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path

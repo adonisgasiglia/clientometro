@@ -9,14 +9,19 @@
  * compiled file so the styles you add here take precedence over styles defined in any styles
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
- *
+ *= require bootstrap
+ *= require font-awesome
+ *= require jquery-ui
+ *= require jquery.dataTables
  *= require vendor
  *= require app-blue
- *= require font-awesome
-//= require jquery-ui
- *= require jquery.dataTables
  *= require_self
  */
+
+.dados-contrato{
+    font-size:14px;
+    display: inline;
+}
 
 .ajuda p {
     font-size: 0.9rem !important;

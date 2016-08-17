@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
 //= require jquery.dataTables
 //= require jquery-ui
 //= require jquery.maskedinput

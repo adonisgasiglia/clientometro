@@ -1,5 +1,5 @@
 class Cliente < ActiveRecord::Base
-  has_many :contratos
+  has_many :contratos, :dependent => :delete_all
   has_many :planos, through: :contratos
 
   scope :ativos, -> {

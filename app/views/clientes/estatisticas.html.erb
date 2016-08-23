@@ -1,0 +1,32 @@
+<article class="content">
+  <div>
+    <%= flash_messages %>
+  </div>
+
+  <% title "Editar Cliente | Clientômetro - Mères Escritórios Corporativos" %>
+
+  <div class="title-search-block">
+    <div class="title-block">
+      <div class="row">
+        <div class="col-md-6">
+          <h3 class="title">
+            Editar Cliente
+          </h3>
+          <p class="title-description"> Editar as informações do cliente </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-block">
+            <%= line_chart Cliente.group_by_month(:created_at).count %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</article>

@@ -90,6 +90,16 @@ class ClientesController < ApplicationController
     end
   end
 
+  def estatisticas
+    result = Cliente.connection.select_all(
+        Cliente.select('count(distinct(id)) as c, year(created_at) as y, month(created_at) as m').
+            group('y, m')
+    )
+    @grafico = result.group_by { |x| x['y'] }.each_with_object({}) do |(y,v), h|
+      h[y.to_i] = Hash[v.map { |e| [e['m'].to_i, e['c'].to_i] }]
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cliente

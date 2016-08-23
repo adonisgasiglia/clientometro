@@ -16,3 +16,4 @@
 //= require jquery.dataTables
 //= require jquery-ui
 //= require jquery.maskedinput
+//= require chartkick

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :clientes do
     collection do
       get :autocomplete_clientes
+      get :estatisticas
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

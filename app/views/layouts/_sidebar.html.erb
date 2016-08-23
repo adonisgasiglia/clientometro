@@ -13,6 +13,7 @@
           <ul>
             <%= nav_link ' Adicionar Cliente ', new_cliente_path, 'nil' %>
             <%= nav_link ' Listar Clientes ', clientes_path, 'nil' %>
+            <%= nav_link ' Estatísticas ', estatisticas_clientes_path, 'nil' %>
           </ul>
         </li>
         <li class="<%= 'active open' if params[:controller] == 'planos' %>">
